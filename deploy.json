@@ -17,6 +17,6 @@
     "sudo systemctl restart emaredatabase"
   ],
   "restart_command": "systemctl status emaredatabase --no-pager",
-  "auto_deploy_on_push": false,
+  "auto_deploy_on_push": true,
   "health_check_url": null
 }
