@@ -1,0 +1,22 @@
+{
+  "slug": "emaredatabase",
+  "name": "Emare Database",
+  "github_repo": "emraresoftware/emaredatabase",
+  "branch": "main",
+  "dc": "local",
+  "server_host": null,
+  "server_ssh_port": 22,
+  "remote_path": "/opt/emaredatabase",
+  "stack": "python-gunicorn",
+  "port": 8308,
+  "domain": "",
+  "deploy_commands": [
+    "cd /opt/emaredatabase",
+    "git pull origin main",
+    "source venv/bin/activate && pip install -r requirements.txt -q",
+    "sudo systemctl restart emaredatabase"
+  ],
+  "restart_command": "systemctl status emaredatabase --no-pager",
+  "auto_deploy_on_push": false,
+  "health_check_url": null
+}
