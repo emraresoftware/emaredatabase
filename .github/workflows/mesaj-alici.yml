@@ -1,0 +1,67 @@
+name: "Emare Mesaj Alıcı"
+
+# repository_dispatch ile tetiklenir (merkez workflow'dan)
+on:
+  repository_dispatch:
+    types: [emare-mesaj]
+
+jobs:
+  mesaj_al:
+    name: "Yeni Mesaj Bildir"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.EMARE_TOKEN }}
+
+      - name: Mesaj bildirim dosyası oluştur
+        run: |
+          GONDEREN="${{ github.event.client_payload.gonderen }}"
+          MESAJ_NO="${{ github.event.client_payload.mesaj_no }}"
+          BASLIK="${{ github.event.client_payload.baslik }}"
+          ACIL="${{ github.event.client_payload.acil }}"
+          BROADCAST="${{ github.event.client_payload.broadcast }}"
+          TARIH=$(date -u +"%Y-%m-%d %H:%M UTC")
+          
+          if [ "$ACIL" = "true" ]; then
+            IKON="🔴 ACİL"
+          elif [ "$BROADCAST" = "true" ]; then
+            IKON="📢 Duyuru"
+          else
+            IKON="📨 Mesaj"
+          fi
+          
+          mkdir -p .github
+          cat > .github/YENI_MESAJ.md << EOF
+          # ${IKON} — Yeni Mesaj Var!
+          
+          | Alan | Değer |
+          |------|-------|
+          | Gönderen | \`${GONDEREN}\` |
+          | Mesaj No | #${MESAJ_NO} |
+          | Tarih | ${TARIH} |
+          | Tür | ${IKON} |
+          
+          ## Başlık:
+          ${BASLIK}
+          
+          ---
+          **Bu mesajı okumak için:**
+          \`\`\`bash
+          python3 EMARE_ORTAK_CALISMA/emare_messenger.py \$(basename \$PWD) oku
+          \`\`\`
+          
+          *Okunduktan sonra bu dosyayı silip commit edebilirsiniz.*
+          EOF
+          
+          echo "Mesaj bildirim dosyası oluşturuldu"
+
+      - name: Commit ve push
+        run: |
+          git config user.name "Emare Mesaj Sistemi"
+          git config user.email "mesaj@emare.dev"
+          git add .github/YENI_MESAJ.md
+          git diff --cached --quiet && echo "Değişiklik yok" && exit 0
+          git commit -m "📨 Yeni mesaj: #${{ github.event.client_payload.mesaj_no }} (${{ github.event.client_payload.gonderen }})"
+          git push

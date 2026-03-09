@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Emare Database</title>
+  <meta name="description" content="Emare veritabanı yönetim kütüphanesi">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='#e7177e'/><stop offset='100%25' stop-color='#a00c55'/></linearGradient></defs><rect rx='20' width='100' height='100' fill='url(%23g)'/><text x='50' y='68' text-anchor='middle' fill='white' font-size='42' font-weight='bold' font-family='Inter,sans-serif'>DA</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: {
+              50:'#f9f4f7',100:'#f5e9ef',200:'#eec8db',300:'#e791bc',
+              400:'#e4579d',500:'#e7177e',600:'#c2146a',700:'#a00c55',
+              800:'#7a0941',900:'#53082d',950:'#2d0519'
+            }
+          },
+          animation: {
+            'float':'float 6s ease-in-out infinite',
+            'float-delayed':'float 6s ease-in-out 2s infinite',
+            'gradient':'gradient 8s ease infinite',
+            'fade-up':'fadeUp 0.6s ease-out forwards',
+          },
+          keyframes: {
+            float:{'0%,100%':{transform:'translateY(0px)'},'50%':{transform:'translateY(-20px)'}},
+            gradient:{'0%,100%':{backgroundPosition:'0% 50%'},'50%':{backgroundPosition:'100% 50%'}},
+            fadeUp:{'0%':{opacity:'0',transform:'translateY(30px)'},'100%':{opacity:'1',transform:'translateY(0)'}},
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .gradient-text {
+      background: linear-gradient(135deg, #c2146a 0%, #e4579d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-gradient {
+      background: linear-gradient(-45deg, #2d0519, #53082d, #7a0941, #53082d);
+      background-size: 400% 400%;
+      animation: gradient 8s ease infinite;
+    }
+    .hero-mesh {
+      background-image:
+        radial-gradient(ellipse 600px 400px at 80% 20%, #e7177e1a 0%, transparent 70%),
+        radial-gradient(ellipse 500px 500px at 20% 80%, #a00c5514 0%, transparent 70%);
+    }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 60px -12px #e7177e30; }
+    .btn-primary {
+      background: linear-gradient(135deg, #e7177e, #a00c55);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 8px 30px #e7177e40; }
+  </style>
+</head>
+<body class="font-sans text-gray-800 antialiased">
+
+  <!-- ═══ NAV ═══ -->
+  <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm" style="background: linear-gradient(135deg, #e7177e, #a00c55)">DA</div>
+        <span class="text-xl font-bold text-gray-900">Emare Database</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+        <a href="#ozellikler" class="hover:text-brand-600 transition">Özellikler</a>
+        <a href="#teknoloji" class="hover:text-brand-600 transition">Teknoloji</a>
+        <a href="#hakkinda" class="hover:text-brand-600 transition">Hakkında</a>
+        <a href="#iletisim" class="btn-primary px-5 py-2.5 rounded-xl text-white font-semibold">Başla</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero-gradient hero-mesh relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl animate-float" style="background:#e7177e"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl animate-float-delayed" style="background:#a00c55"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-8 border" style="background:#f9f4f7;border-color:#eec8db;color:#a00c55">
+        📦 Emare Ekosistemi
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+        <span class="text-white">Emare Database</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed">
+        Emare veritabanı yönetim kütüphanesi
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#ozellikler" class="btn-primary px-8 py-4 rounded-2xl text-white font-bold text-lg">
+          <i class="fas fa-rocket mr-2"></i>Keşfet
+        </a>
+        <a href="#teknoloji" class="px-8 py-4 rounded-2xl border-2 font-bold text-lg text-white hover:bg-white/10 transition" style="border-color:#e4579d">
+          <i class="fas fa-code mr-2"></i>Teknik Detay
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ÖZELLİKLER ═══ -->
+  <section id="ozellikler" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold mb-4"><span class="gradient-text">Özellikler</span></h2>
+        <p class="text-lg text-gray-500 max-w-2xl mx-auto">Emare Database ile neler yapabilirsiniz?</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-hover p-8 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#f9f4f7">🚀</div>
+          <h3 class="text-xl font-bold mb-3">Hızlı Başlangıç</h3>
+          <p class="text-gray-500 leading-relaxed">Dakikalar içinde kurulum ve çalıştırma. setup.sh ile tek komutla hazır.</p>
+        </div>
+        <div class="card-hover p-8 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#f9f4f7">🔒</div>
+          <h3 class="text-xl font-bold mb-3">Güvenli Altyapı</h3>
+          <p class="text-gray-500 leading-relaxed">SuperAdmin/Admin/Operator/ReadOnly rol hiyerarşisi ve RBAC sistemi dahil.</p>
+        </div>
+        <div class="card-hover p-8 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#f9f4f7">🌐</div>
+          <h3 class="text-xl font-bold mb-3">Emare Entegre</h3>
+          <p class="text-gray-500 leading-relaxed">Emare ekosistemiyle tam uyum. Derviş, Dergah ve ortak hafıza bağlantılı.</p>
+        </div>
+        <div class="card-hover p-8 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#f9f4f7">📊</div>
+          <h3 class="text-xl font-bold mb-3">Denetim & Log</h3>
+          <p class="text-gray-500 leading-relaxed">Her işlem kayıt altında. Audit trail ve performans metrikleri hazır.</p>
+        </div>
+        <div class="card-hover p-8 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#f9f4f7">🐳</div>
+          <h3 class="text-xl font-bold mb-3">Docker Ready</h3>
+          <p class="text-gray-500 leading-relaxed">Dockerfile ve docker-compose.yml dahil. Production'a hemen deploy.</p>
+        </div>
+        <div class="card-hover p-8 rounded-2xl border border-gray-100 bg-white">
+          <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl mb-5" style="background:#f9f4f7">🧩</div>
+          <h3 class="text-xl font-bold mb-3">Modüler Yapı</h3>
+          <p class="text-gray-500 leading-relaxed">Plug-in mimarisi. İhtiyacınıza göre modül ekleyin veya çıkarın.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TEKNOLOJİ ═══ -->
+  <section id="teknoloji" class="py-24" style="background:#f9f4f7">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-extrabold mb-4"><span class="gradient-text">Teknoloji Yığını</span></h2>
+        <p class="text-lg text-gray-500">Güçlü altyapı, modern araçlar</p>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4">
+                <span class="px-4 py-2 rounded-full text-sm font-semibold" style="background:#f5e9ef;color:#a00c55">Python</span>
+        <span class="px-4 py-2 rounded-full text-sm font-semibold" style="background:#f5e9ef;color:#a00c55">pytest</span>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ HAKKINDA ═══ -->
+  <section id="hakkinda" class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-4xl font-extrabold mb-6"><span class="gradient-text">Emare Ekosistemi</span></h2>
+      <p class="text-lg text-gray-600 leading-relaxed mb-8">
+        Emare Database, <strong>Emare ekosisteminin</strong> bir parçasıdır.
+        Her proje bir Derviş tarafından korunur, Dergah üzerinden ekosistemle iletişim kurar.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-6 text-center">
+        <div class="p-6 rounded-2xl" style="background:#f9f4f7">
+          <div class="text-3xl font-extrabold mb-2" style="color:#c2146a">📦</div>
+          <div class="text-sm font-semibold text-gray-800">Emare Database</div>
+          <div class="text-xs text-gray-500">Core Engine</div>
+        </div>
+        <div class="p-6 rounded-2xl" style="background:#f9f4f7">
+          <div class="text-3xl font-extrabold mb-2">🧑‍💼</div>
+          <div class="text-sm font-semibold text-gray-800">Derviş Koruması</div>
+          <div class="text-xs text-gray-500">EmareAPI entegrasyonu</div>
+        </div>
+        <div class="p-6 rounded-2xl" style="background:#f9f4f7">
+          <div class="text-3xl font-extrabold mb-2">🕌</div>
+          <div class="text-sm font-semibold text-gray-800">Dergah Bağlantısı</div>
+          <div class="text-xs text-gray-500">Ekosistem iletişimi</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="py-12 text-center" style="background:#2d0519">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-center gap-3 mb-4">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-xs" style="background: linear-gradient(135deg, #e7177e, #a00c55)">DA</div>
+        <span class="text-lg font-bold text-white">Emare Database</span>
+      </div>
+      <p class="text-sm text-gray-400 mb-2">Emare veritabanı yönetim kütüphanesi</p>
+      <p class="text-xs text-gray-500">© 2026 Emare Ekosistemi. Çeyiz: emarework Dervishi.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
