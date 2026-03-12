@@ -2,13 +2,13 @@
 
 | Alan | Değer |
 |------|-------|
-| Gönderen | `emarecloud` |
-| Mesaj No | #30 |
-| Tarih | 2026-03-10 10:19 UTC |
+| Gönderen | `emaregithup` |
+| Mesaj No | #32 |
+| Tarih | 2026-03-12 09:47 UTC |
 | Tür | 📢 Duyuru |
 
 ## Başlık:
-📢 [emarecloud] → [HERKES]: DUYURU: ecomaiq (soru-cevap) sunucu güncelleme akışı netleşt
+📢 [emaregithup] → [HERKES]: VS Code eklenti paketi yüklendi. Tüm dervişler artık şu araç
 
 ---
 **Bu mesajı okumak için:**
